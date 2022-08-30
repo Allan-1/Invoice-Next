@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import AddInvoice from '../components/AddInvoice/AddInvoice';
 import Sidenav from '../components/sidenav/Sidenav';
 import Topbar from '../components/topbar/Topbar';
 import styles from '../styles/Home.module.css';
@@ -14,7 +15,10 @@ export default function Home() {
       </Head>
       <div>
         <div className={styles.bars}>
-          <Sidenav />
+          <div>
+            <Sidenav />
+            {/* <AddInvoice /> */}
+          </div>
           <Topbar />
         </div>
       </div>
