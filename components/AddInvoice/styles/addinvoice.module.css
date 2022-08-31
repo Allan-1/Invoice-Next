@@ -9,6 +9,11 @@
   height: 100vh;
   border-top-right-radius: 40px;
   border-bottom-right-radius: 40px;
+  overflow-y: auto;
+}
+.addinvoice::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
 .title {
   font-weight: bold;

@@ -1,7 +1,5 @@
 import Head from 'next/head';
-import Sidenav from '../components/sidenav/Sidenav';
-import Topbar from '../components/topbar/Topbar';
-import styles from '../styles/Home.module.css';
+import Layout from '../components/Layout/Layout';
 
 export default function Home() {
   return (
@@ -12,12 +10,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <div className={styles.bars}>
-          <div>
-            <Sidenav />
-          </div>
-          <Topbar />
-        </div>
+        <Layout />
       </div>
     </div>
   );

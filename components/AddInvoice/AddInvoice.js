@@ -1,12 +1,39 @@
 import React, { useState } from 'react';
-import { MdAdd, MdDelete } from 'react-icons/md';
+import { MdAdd } from 'react-icons/md';
 import Itemlist from './itemlist/Itemlist';
 import styles from './styles/addinvoice.module.css';
+import { InvoiceData } from '../../lib/InvoiceData';
 
 function AddInvoice({ show, toggle }) {
   const [inputField, setInputField] = useState([
-    { itemname: '', qty: 0.0, price: 0.0 },
+    { itemname: '', qty: '', price: '' },
   ]);
+  const [userInputFiled, setUserInputField] = useState([
+    {
+      invoiceno: '4579h',
+      projectname: '',
+      invoicedate: '',
+      paymentdue: '',
+      fromstreetaddr: '',
+      fromcity: '',
+      frompocode: '',
+      fromcountry: '',
+      toname: '',
+      streetadrr: '',
+      tocity: '',
+      topocode: '',
+      tocountry: '',
+      toemail: '',
+      status: 'Pending',
+      invoiceitems: [{ itemname: '', qty: '', price: '' }],
+    },
+  ]);
+
+  const handleUserInputChange = (event) => {
+    let data = [...userInputFiled];
+    data[0][event.target.name] = event.target.value;
+    setUserInputField(data);
+  };
 
   const handleFormChange = (index, event) => {
     let data = [...inputField];
@@ -25,6 +52,12 @@ function AddInvoice({ show, toggle }) {
     setInputField(data);
   };
 
+  const submit = (e) => {
+    e.preventDefault();
+    InvoiceData.push(...userInputFiled);
+    console.log(InvoiceData);
+  };
+
   if (!show) {
     return null;
   }
@@ -39,6 +72,9 @@ function AddInvoice({ show, toggle }) {
               Street Adress
             </label>
             <input
+              onChange={(e) => handleUserInputChange(e)}
+              value={userInputFiled[0].fromstreetaddr}
+              name="fromstreetaddr"
               className={styles.fullwidth}
               id="streetadress"
               type={'text'}
@@ -50,19 +86,40 @@ function AddInvoice({ show, toggle }) {
                 <label className={styles.label} htmlFor="city">
                   City
                 </label>
-                <input id="city" type={'text'} required />
+                <input
+                  onChange={(e) => handleUserInputChange(e)}
+                  value={userInputFiled[0].fromcity}
+                  name="fromcity"
+                  id="city"
+                  type={'text'}
+                  required
+                />
               </div>
               <div>
                 <label className={styles.label} htmlFor="postcode">
                   Post Code
                 </label>
-                <input id="postcode" type={'text'} required />
+                <input
+                  onChange={(e) => handleUserInputChange(e)}
+                  value={userInputFiled[0].frompocode}
+                  name="frompocode"
+                  id="postcode"
+                  type={'text'}
+                  required
+                />
               </div>
               <div>
                 <label className={styles.label} htmlFor="country">
                   Country
                 </label>
-                <input id="country" type={'text'} required />
+                <input
+                  onChange={(e) => handleUserInputChange(e)}
+                  value={userInputFiled[0].fromcountry}
+                  name="fromcountry"
+                  id="country"
+                  type={'text'}
+                  required
+                />
               </div>
             </div>
           </div>
@@ -73,6 +130,9 @@ function AddInvoice({ show, toggle }) {
                 Client&apos;s Name
               </label>
               <input
+                onChange={(e) => handleUserInputChange(e)}
+                value={userInputFiled[0].toname}
+                name="toname"
                 className={styles.fullwidth}
                 id="clientsname"
                 type={'text'}
@@ -82,6 +142,9 @@ function AddInvoice({ show, toggle }) {
                 Client&apos;s Email
               </label>
               <input
+                onChange={(e) => handleUserInputChange(e)}
+                value={userInputFiled[0].toemail}
+                name="toemail"
                 className={styles.fullwidth}
                 id="clientsemail"
                 type={'text'}
@@ -93,7 +156,10 @@ function AddInvoice({ show, toggle }) {
               </label>
               <input
                 className={styles.fullwidth}
-                id="cstreetadress"
+                onChange={(e) => handleUserInputChange(e)}
+                value={userInputFiled[0].streetadrr}
+                name="streetadrr"
+                id="clientscity"
                 type={'text'}
                 required
               />
@@ -103,19 +169,40 @@ function AddInvoice({ show, toggle }) {
                 <label className={styles.label} htmlFor="clientscity">
                   City
                 </label>
-                <input id="clientscity" type={'text'} required />
+                <input
+                  onChange={(e) => handleUserInputChange(e)}
+                  value={userInputFiled[0].tocity}
+                  name="tocity"
+                  id="clientscity"
+                  type={'text'}
+                  required
+                />
               </div>
               <div>
                 <label className={styles.label} htmlFor="clientspostcode">
                   Post Code
                 </label>
-                <input id="clientspostcode" type={'text'} required />
+                <input
+                  onChange={(e) => handleUserInputChange(e)}
+                  value={userInputFiled[0].topocode}
+                  name="topocode"
+                  id="clientspostcode"
+                  type={'text'}
+                  required
+                />
               </div>
               <div>
                 <label className={styles.label} htmlFor="clientscountry">
                   Country
                 </label>
-                <input id="clientscountry" type={'text'} required />
+                <input
+                  onChange={(e) => handleUserInputChange(e)}
+                  value={userInputFiled[0].tocountry}
+                  name="tocountry"
+                  id="clientscountry"
+                  type={'text'}
+                  required
+                />
               </div>
             </div>
           </div>
@@ -125,9 +212,11 @@ function AddInvoice({ show, toggle }) {
                 Invoice Date
               </label>
               <input
+                onChange={(e) => handleUserInputChange(e)}
+                value={userInputFiled[0].invoicedate}
                 className={styles.fullwidth}
                 type="date"
-                name="date"
+                name="invoicedate"
                 id="invoicedate"
               />
             </div>
@@ -136,8 +225,9 @@ function AddInvoice({ show, toggle }) {
                 Payment Terms
               </label>
               <select
+                onChange={(e) => handleUserInputChange(e)}
                 className={styles.fullwidth}
-                name="payterms"
+                name="paymentdue"
                 id="payterms"
               >
                 <option className={styles.opts} value="1day">
@@ -159,9 +249,11 @@ function AddInvoice({ show, toggle }) {
                 Project Description
               </label>
               <input
+                onChange={(e) => handleUserInputChange(e)}
+                value={userInputFiled[0].projectname}
                 className={styles.fullwidth}
                 type="text"
-                name="description"
+                name="projectname"
                 id="description"
                 placeholder="e.g. Software development Service"
               />
@@ -199,7 +291,9 @@ function AddInvoice({ show, toggle }) {
             </button>
             <div>
               <button className={styles.draft}>Save as Draft</button>
-              <button className={styles.save}>Save & Send</button>
+              <button onClick={submit} className={styles.save}>
+                Save & Send
+              </button>
             </div>
           </div>
         </from>

@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   width: 100vw;
-  margin-top: 4rem;
-  height: 2rem;
+  margin-top: 2rem;
+  height: 4rem;
 }
 .flex {
   display: flex;
@@ -63,12 +63,14 @@
 .addbtn {
   background-color: #7c5dfa;
   color: #fff;
-  padding: 10px;
+  height: 2.5rem;
+  padding: 8px;
   border-radius: 20px;
   font-weight: bold;
   display: flex;
   align-items: center;
   cursor: pointer;
+  border: none;
 }
 .addbtn span {
   margin-left: 6px;
