@@ -1,24 +1,22 @@
 export const initialState = { invoices: [] };
 
 const invoiceReducer = (state, action) => {
-  const { type, payload } = action;
-
-  switch (type) {
+  switch (action.type) {
     case 'Add_Invoice':
-      console.log('Add invoice', payload);
+      console.log('Add invoice', action.payload);
 
       return {
         ...state.invoices,
-        invoice: payload.invoices,
+        invoice: action.payload.invoices,
       };
     case 'Remove_Invoice':
-      console.log('Remove Invoice', payload);
+      console.log('Remove Invoice', action.payload);
       return {
         ...state,
-        invoice: payload.invoices,
+        invoice: action.payload.invoices,
       };
     case 'Update_Invoice':
-      console.log('Update Invoice', payload);
+      console.log('Update Invoice', action.payload);
     default:
       throw new Error(`No case for ${type} found in Invoice reducer`);
   }

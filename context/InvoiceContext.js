@@ -7,7 +7,7 @@ export function InvoiceProvider({ children }) {
   const [state, dispatch] = useReducer(invoiceReducer, initialState);
 
   const addInvoice = (invoice) => {
-    const addedInvoice = state.invoices.concat(invoice);
+    const addedInvoice = [...initialState.invoices, invoice];
     dispatch({
       type: 'Add_Invoice',
       payload: {
@@ -37,7 +37,7 @@ export function InvoiceProvider({ children }) {
   const value = {
     addInvoice,
     removeInvoice,
-    invoices: state.invoices,
+    invoices: state.invoice,
   };
 
   return (

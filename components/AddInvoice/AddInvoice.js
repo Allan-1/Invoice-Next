@@ -1,30 +1,68 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { MdAdd } from 'react-icons/md';
 import Itemlist from './itemlist/Itemlist';
 import styles from './styles/addinvoice.module.css';
 import useInvoice from '../../context/InvoiceContext';
 
 function AddInvoice({ show, toggle }) {
-  const { invoices, addinvoice, removeInvoice } = useInvoice();
+  const { invoices, addInvoice } = useInvoice();
 
-  const [inputField, setInputField] = useState([
+  const invoiceno = useRef('');
+  const projectname = useRef('');
+  const invoicedate = useRef('');
+  const paymentdue = useRef('');
+  const fromstreetaddr = useRef('');
+  const fromcity = useRef('');
+  const frompocode = useRef('');
+  const fromcountry = useRef('');
+  const toname = useRef('');
+  const streetadrr = useRef('');
+  const tocity = useRef('');
+  const topocode = useRef('');
+  const tocountry = useRef('');
+  const toemail = useRef('');
+
+  const handleSubmit = (e) => {
+    const invoicedata = {
+      projectname: projectname.current.value,
+      invoicedate: invoicedate.current.value,
+      paymentdue: paymentdue.current.value,
+      fromstreetaddr: fromstreetaddr.current.value,
+      fromcity: fromcity.current.value,
+      frompocode: frompocode.current.value,
+      fromcountry: fromcountry.current.value,
+      toname: toname.current.value,
+      streetadrr: streetadrr.current.value,
+      tocity: tocity.current.value,
+      topocode: topocode.current.value,
+      tocountry: tocountry.current.value,
+      toemail: toemail.current.value,
+    };
+    e.preventDefault();
+    addInvoice(invoicedata);
+    toggle();
+
+    // e.target.reset();
+  };
+
+  const [iteminputField, setItemInputField] = useState([
     { itemname: '', qty: '', price: '' },
   ]);
 
-  const handleFormChange = (index, event) => {
-    let data = [...inputField];
+  const handleItemFormChange = (index, event) => {
+    let data = [...iteminputField];
     data[index][event.target.name] = event.target.value;
   };
 
-  const addFields = () => {
+  const addItemFields = () => {
     let newfield = { itemname: '', qty: 0.0, price: 0.0 };
-    setInputField([...inputField, newfield]);
+    setItemInputField([...iteminputField, newfield]);
   };
 
-  const removeFields = (index) => {
-    let data = [...inputField];
+  const removeItemFields = (index) => {
+    let data = [...iteminputField];
     data.splice(index, 1);
-    setInputField(data);
+    setItemInputField(data);
   };
 
   if (!show) {
@@ -42,6 +80,7 @@ function AddInvoice({ show, toggle }) {
               Street Adress
             </label>
             <input
+              ref={fromstreetaddr}
               name="fromstreetaddr"
               className={styles.fullwidth}
               id="streetadress"
@@ -54,19 +93,37 @@ function AddInvoice({ show, toggle }) {
                 <label className={styles.label} htmlFor="city">
                   City
                 </label>
-                <input name="fromcity" id="city" type={'text'} required />
+                <input
+                  ref={fromcity}
+                  name="fromcity"
+                  id="city"
+                  type={'text'}
+                  required
+                />
               </div>
               <div>
                 <label className={styles.label} htmlFor="postcode">
                   Post Code
                 </label>
-                <input name="frompocode" id="postcode" type={'text'} required />
+                <input
+                  ref={frompocode}
+                  name="frompocode"
+                  id="postcode"
+                  type={'text'}
+                  required
+                />
               </div>
               <div>
                 <label className={styles.label} htmlFor="country">
                   Country
                 </label>
-                <input name="fromcountry" id="country" type={'text'} required />
+                <input
+                  ref={fromcountry}
+                  name="fromcountry"
+                  id="country"
+                  type={'text'}
+                  required
+                />
               </div>
             </div>
           </div>
@@ -77,6 +134,7 @@ function AddInvoice({ show, toggle }) {
                 Client&apos;s Name
               </label>
               <input
+                ref={toname}
                 name="toname"
                 className={styles.fullwidth}
                 id="clientsname"
@@ -87,6 +145,7 @@ function AddInvoice({ show, toggle }) {
                 Client&apos;s Email
               </label>
               <input
+                ref={toemail}
                 name="toemail"
                 className={styles.fullwidth}
                 id="clientsemail"
@@ -98,6 +157,7 @@ function AddInvoice({ show, toggle }) {
                 Street Adress
               </label>
               <input
+                ref={streetadrr}
                 className={styles.fullwidth}
                 name="streetadrr"
                 id="clientscity"
@@ -110,13 +170,20 @@ function AddInvoice({ show, toggle }) {
                 <label className={styles.label} htmlFor="clientscity">
                   City
                 </label>
-                <input name="tocity" id="clientscity" type={'text'} required />
+                <input
+                  ref={tocity}
+                  name="tocity"
+                  id="clientscity"
+                  type={'text'}
+                  required
+                />
               </div>
               <div>
                 <label className={styles.label} htmlFor="clientspostcode">
                   Post Code
                 </label>
                 <input
+                  ref={topocode}
                   name="topocode"
                   id="clientspostcode"
                   type={'text'}
@@ -128,6 +195,7 @@ function AddInvoice({ show, toggle }) {
                   Country
                 </label>
                 <input
+                  ref={tocountry}
                   name="tocountry"
                   id="clientscountry"
                   type={'text'}
@@ -142,6 +210,7 @@ function AddInvoice({ show, toggle }) {
                 Invoice Date
               </label>
               <input
+                ref={invoicedate}
                 className={styles.fullwidth}
                 type="date"
                 name="invoicedate"
@@ -153,6 +222,7 @@ function AddInvoice({ show, toggle }) {
                 Payment Terms
               </label>
               <select
+                ref={paymentdue}
                 className={styles.fullwidth}
                 name="paymentdue"
                 id="payterms"
@@ -176,6 +246,7 @@ function AddInvoice({ show, toggle }) {
                 Project Description
               </label>
               <input
+                ref={projectname}
                 className={styles.fullwidth}
                 type="text"
                 name="projectname"
@@ -193,20 +264,20 @@ function AddInvoice({ show, toggle }) {
                 <div className={styles.itemlabels}>Price</div>
                 <div className={styles.itemlabels}>Total</div>
               </div>
-              {inputField.map((input, index) => {
+              {iteminputField.map((input, index) => {
                 return (
                   <div key={index}>
                     <Itemlist
                       input={input}
-                      handleFormChange={handleFormChange}
-                      removeFields={removeFields}
+                      handleFormChange={handleItemFormChange}
+                      removeFields={removeItemFields}
                       index={index}
                     />
                   </div>
                 );
               })}
             </div>
-            <button className={styles.addnewbtn} onClick={addFields}>
+            <button className={styles.addnewbtn} onClick={addItemFields}>
               <MdAdd /> Add New Item
             </button>
           </div>
@@ -216,7 +287,9 @@ function AddInvoice({ show, toggle }) {
             </button>
             <div>
               <button className={styles.draft}>Save as Draft</button>
-              <button className={styles.save}>Save & Send</button>
+              <button onClick={handleSubmit} className={styles.save}>
+                Save & Send
+              </button>
             </div>
           </div>
         </form>
