@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { MdOutlineAddCircleOutline } from 'react-icons/md';
-import { InvoiceData } from '../../lib/InvoiceData';
+import useInvoice from '../../context/InvoiceContext';
 import AddInvoice from '../AddInvoice/AddInvoice';
 import styles from './styles/topbar.module.css';
 
 function Topbar() {
+  const { invoices } = useInvoice();
   const [isShow, setIsshow] = useState(false);
 
   const display = () => setIsshow(true);
@@ -16,7 +17,7 @@ function Topbar() {
           <div>
             <div className={styles.title}>Invoices</div>
             <div className={styles.subtitle}>
-              There are {InvoiceData.length} total invoices
+              There are {invoices.length} total invoices
             </div>
           </div>
           <div className={styles.topbtns}>

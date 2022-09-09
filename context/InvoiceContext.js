@@ -37,7 +37,7 @@ export function InvoiceProvider({ children }) {
   const value = {
     addInvoice,
     removeInvoice,
-    invoices: state,
+    invoices: state.invoices,
   };
 
   return (
