@@ -8,7 +8,7 @@ const invoiceReducer = (state, action) => {
       console.log('Add invoice', payload);
 
       return {
-        ...state,
+        ...state.invoices,
         invoice: payload.invoices,
       };
     case 'Remove_Invoice':

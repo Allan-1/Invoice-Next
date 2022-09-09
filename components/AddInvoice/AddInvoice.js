@@ -35,7 +35,7 @@ function AddInvoice({ show, toggle }) {
       {console.log(invoices)}
       <div className={styles.title}>New Invoice</div>
       <div className={styles.formpadding}>
-        <from>
+        <form>
           <div className={styles.titleinlabel}>Bill from</div>
           <div className={styles.prod}>
             <label className={styles.label} htmlFor="streetaddres">
@@ -219,7 +219,7 @@ function AddInvoice({ show, toggle }) {
               <button className={styles.save}>Save & Send</button>
             </div>
           </div>
-        </from>
+        </form>
       </div>
     </div>
   );

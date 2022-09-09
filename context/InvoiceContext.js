@@ -7,11 +7,11 @@ export function InvoiceProvider({ children }) {
   const [state, dispatch] = useReducer(invoiceReducer, initialState);
 
   const addInvoice = (invoice) => {
-    const addedProduct = state.products.concat(invoice);
+    const addedInvoice = state.invoices.concat(invoice);
     dispatch({
       type: 'Add_Invoice',
       payload: {
-        invoice: addedProduct,
+        invoice: addedInvoice,
       },
     });
   };
