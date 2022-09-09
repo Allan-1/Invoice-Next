@@ -1,4 +1,4 @@
-export const initialState = { products: [] };
+export const initialState = { invoices: [] };
 
 const invoiceReducer = (state, action) => {
   const { type, payload } = action;
@@ -9,13 +9,13 @@ const invoiceReducer = (state, action) => {
 
       return {
         ...state,
-        product: payload.products,
+        invoice: payload.invoices,
       };
     case 'Remove_Invoice':
       console.log('Remove Invoice', payload);
       return {
         ...state,
-        product: payload.products,
+        invoice: payload.invoices,
       };
     case 'Update_Invoice':
       console.log('Update Invoice', payload);
