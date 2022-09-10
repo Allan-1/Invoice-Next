@@ -71,7 +71,6 @@ function AddInvoice({ show, toggle }) {
   }
   return (
     <div className={styles.addinvoice}>
-      {/* {console.log(invoices)} */}
       <div className={styles.title}>New Invoice</div>
       <div className={styles.formpadding}>
         <form>
