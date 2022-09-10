@@ -9,23 +9,23 @@ function InvoiceList() {
     <div className={styles.invoicelistcontainer}>
       <div className={styles.invoicelist}>
         <div>
-          {/* {invoices.map((data) => ( */}
-          <div className={styles.invoicedata}>
-            <div className={styles.invoicedatauser}>
-              <div className={styles.invoiceno}>
-                <span className={styles.sign}>#</span>
-                teue
+          {invoices.map((data) => (
+            <div className={styles.invoicedata} key={data.invoiceno}>
+              <div className={styles.invoicedatauser}>
+                <div className={styles.invoiceno}>
+                  <span className={styles.sign}>#</span>
+                  teue
+                </div>
+                <div className={styles.todane}>Valkc </div>
+                <div className={styles.todane}>ddjndk</div>
               </div>
-              <div className={styles.todane}>Valkc </div>
-              <div className={styles.todane}>ddjndk</div>
+              <div className={styles.price}>sh190.00</div>
+              <div className={styles.status}>jdsud</div>
+              <div className={styles.caret}>
+                <FaCaretRight />
+              </div>
             </div>
-            <div className={styles.price}>sh190.00</div>
-            <div className={styles.status}>jdsud</div>
-            <div className={styles.caret}>
-              <FaCaretRight />
-            </div>
-          </div>
-          {/* ))} */}
+          ))}
         </div>
       </div>
     </div>
