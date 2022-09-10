@@ -1,19 +1,20 @@
-export const initialState = { invoices: [] };
+export const initialState = {
+  invoices: [],
+};
 
 const invoiceReducer = (state, action) => {
   switch (action.type) {
     case 'Add_Invoice':
-      console.log('Add invoice', action.payload);
+      console.log('Add invoice', action.payload.invoices);
+      console.log('invoice state', state);
 
       return {
-        ...state.invoices,
-        invoice: action.payload.invoices,
+        invoices: [...state.invoices, action.payload.invoices],
       };
     case 'Remove_Invoice':
       console.log('Remove Invoice', action.payload);
       return {
-        ...state,
-        invoice: action.payload.invoices,
+        invoices: action.payload.invoices,
       };
     case 'Update_Invoice':
       console.log('Update Invoice', action.payload);

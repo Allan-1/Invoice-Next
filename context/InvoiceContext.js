@@ -7,11 +7,10 @@ export function InvoiceProvider({ children }) {
   const [state, dispatch] = useReducer(invoiceReducer, initialState);
 
   const addInvoice = (invoice) => {
-    const addedInvoice = [...initialState.invoices, invoice];
     dispatch({
       type: 'Add_Invoice',
       payload: {
-        invoice: addedInvoice,
+        invoices: invoice,
       },
     });
   };
@@ -20,7 +19,7 @@ export function InvoiceProvider({ children }) {
     dispatch({
       type: 'Remove_Invoice',
       payload: {
-        invoice: 'Invoice removed',
+        invoices: 'Invoice removed',
       },
     });
   };
@@ -37,7 +36,7 @@ export function InvoiceProvider({ children }) {
   const value = {
     addInvoice,
     removeInvoice,
-    invoices: state.invoice,
+    invoices: state.invoices,
   };
 
   return (
