@@ -5,9 +5,6 @@ export const initialState = {
 const invoiceReducer = (state, action) => {
   switch (action.type) {
     case 'Add_Invoice':
-      console.log('Add invoice', action.payload.invoices);
-      console.log('invoice state', state);
-
       return {
         invoices: [...state.invoices, action.payload.invoices],
       };

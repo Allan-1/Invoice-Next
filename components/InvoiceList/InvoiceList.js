@@ -2,6 +2,7 @@ import React from 'react';
 import { FaCaretRight } from 'react-icons/fa';
 import styles from './styles/invoicelist.module.css';
 import useInvoice from '../../context/InvoiceContext';
+import { addItems } from '../../lib/addItems';
 
 function InvoiceList() {
   const { invoices } = useInvoice();
@@ -19,7 +20,7 @@ function InvoiceList() {
                 <div className={styles.todane}>{data.invoicedate} </div>
                 <div className={styles.todane}>{data.toname}</div>
               </div>
-              <div className={styles.price}>sh190.00</div>
+              <div className={styles.price}>Ksh {addItems(data.items)}</div>
               <div className={styles.status}>{data.status}</div>
               <div className={styles.caret}>
                 <FaCaretRight />

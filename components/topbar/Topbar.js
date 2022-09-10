@@ -23,7 +23,7 @@ function Topbar() {
           <div className={styles.topbtns}>
             <div className={styles.filter}>
               <div className={styles.select}>
-                <select onChange={(e) => console.log(e.target.value)}>
+                <select>
                   <option>Filter by status</option>
                   <option value={'drafts'}>Drafts</option>
                   <option value={'pending'}>Pending</option>
