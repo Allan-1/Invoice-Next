@@ -16,7 +16,9 @@ function Topbar() {
         <div className={styles.flex}>
           <div>
             <div className={styles.title}>Invoices</div>
-            <div className={styles.subtitle}>There are 0 total invoices</div>
+            <div className={styles.subtitle}>
+              There are {invoices.length} total invoices
+            </div>
           </div>
           <div className={styles.topbtns}>
             <div className={styles.filter}>

@@ -14,13 +14,13 @@ function InvoiceList() {
               <div className={styles.invoicedatauser}>
                 <div className={styles.invoiceno}>
                   <span className={styles.sign}>#</span>
-                  teue
+                  {data.invoiceno}
                 </div>
-                <div className={styles.todane}>Valkc </div>
-                <div className={styles.todane}>ddjndk</div>
+                <div className={styles.todane}>{data.invoicedate} </div>
+                <div className={styles.todane}>{data.toname}</div>
               </div>
               <div className={styles.price}>sh190.00</div>
-              <div className={styles.status}>jdsud</div>
+              <div className={styles.status}>{data.status}</div>
               <div className={styles.caret}>
                 <FaCaretRight />
               </div>

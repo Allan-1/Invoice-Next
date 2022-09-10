@@ -3,11 +3,14 @@ import { MdAdd } from 'react-icons/md';
 import Itemlist from './itemlist/Itemlist';
 import styles from './styles/addinvoice.module.css';
 import useInvoice from '../../context/InvoiceContext';
+import { getInvoiceNo } from '../../lib/randomids';
 
 function AddInvoice({ show, toggle }) {
   const { invoices, addInvoice } = useInvoice();
+  const [iteminputField, setItemInputField] = useState([
+    { itemname: '', qty: '', price: '' },
+  ]);
 
-  const invoiceno = useRef('');
   const projectname = useRef('');
   const invoicedate = useRef('');
   const paymentdue = useRef('');
@@ -24,7 +27,7 @@ function AddInvoice({ show, toggle }) {
 
   const handleSubmit = (e) => {
     const invoicedata = {
-      invoiceno: new Date().toTimeString(),
+      invoiceno: getInvoiceNo(),
       projectname: projectname.current.value,
       invoicedate: invoicedate.current.value,
       paymentdue: paymentdue.current.value,
@@ -38,6 +41,7 @@ function AddInvoice({ show, toggle }) {
       topocode: topocode.current.value,
       tocountry: tocountry.current.value,
       toemail: toemail.current.value,
+      status: 'Pending',
     };
     e.preventDefault();
     addInvoice(invoicedata);
@@ -45,10 +49,6 @@ function AddInvoice({ show, toggle }) {
 
     // e.target.reset();
   };
-
-  const [iteminputField, setItemInputField] = useState([
-    { itemname: '', qty: '', price: '' },
-  ]);
 
   const handleItemFormChange = (index, event) => {
     let data = [...iteminputField];
