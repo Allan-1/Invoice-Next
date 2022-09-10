@@ -26,6 +26,7 @@ function AddInvoice({ show, toggle }) {
   const toemail = useRef('');
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     const invoicedata = {
       invoiceno: getInvoiceNo(),
       projectname: projectname.current.value,
@@ -42,21 +43,22 @@ function AddInvoice({ show, toggle }) {
       tocountry: tocountry.current.value,
       toemail: toemail.current.value,
       status: 'Pending',
+      items: iteminputField,
     };
-    e.preventDefault();
     addInvoice(invoicedata);
+    setItemInputField([{ itemname: '', qty: '', price: '' }]);
     toggle();
-
-    // e.target.reset();
   };
 
   const handleItemFormChange = (index, event) => {
     let data = [...iteminputField];
     data[index][event.target.name] = event.target.value;
+    setItemInputField(data);
   };
 
-  const addItemFields = () => {
-    let newfield = { itemname: '', qty: 0.0, price: 0.0 };
+  const addItemFields = (e) => {
+    e.preventDefault();
+    let newfield = { itemname: '', qty: '', price: '' };
     setItemInputField([...iteminputField, newfield]);
   };
 
